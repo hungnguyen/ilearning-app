@@ -8,7 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 import axios from "axios";
 import { HashRouter as Router } from "react-router-dom";
 
-axios.defaults.baseURL = "http://localhost:5035/api";
+axios.defaults.baseURL = "https://ilearning-api.vercel.app/api";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "text/html";
 
