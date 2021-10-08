@@ -30,7 +30,7 @@ export const unitSlice = createSlice({
       .addCase(asyncThunk.getAllAsync.fulfilled, (state, action) => {
         state.loading = false;
         state.list = action.payload.sort(
-          (a, b) => new Date(b.createdate) - new Date(a.createdate)
+          (a, b) => new Date(a.createdate) - new Date(b.createdate)
         );
       })
       .addCase(asyncThunk.getOneAsync.pending, (state) => {

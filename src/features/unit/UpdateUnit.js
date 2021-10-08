@@ -48,7 +48,7 @@ export default function UpdateUnit({ open, onClose }) {
   };
 
   const handleSave = () => {
-    if (item.id) {
+    if (item._id) {
       dispatch(
         updateAsync({
           ...item,

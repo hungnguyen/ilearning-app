@@ -8,8 +8,8 @@ import {
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { unitSelector } from "../../redux/unit/unitSlice";
-import { getAllAsync } from "../../redux/unit/unitAsyncThunk";
+import { unitSelector, select } from "../../redux/unit/unitSlice";
+import { getAllAsync, removeAsync } from "../../redux/unit/unitAsyncThunk";
 import { useHistory } from "react-router-dom";
 import UpdateUnit from "./UpdateUnit";
 import { Delete, Edit } from "@mui/icons-material";
@@ -38,6 +38,16 @@ export default function ListUnit() {
   const handleOpen = () => {
     setOpenUpdate(true);
   };
+  const handleEdit = (id) => {
+    dispatch(select(id));
+    setOpenUpdate(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Bạn muốn xóa không?")) {
+      dispatch(removeAsync(id));
+    }
+  };
   return (
     <>
       {account.islogged && (
@@ -56,10 +66,18 @@ export default function ListUnit() {
               secondaryAction={
                 account.islogged && (
                   <>
-                    <IconButton edge="end" aria-label="edit">
+                    <IconButton
+                      edge="end"
+                      aria-label="edit"
+                      onClick={() => handleEdit(i._id)}
+                    >
                       <Edit />
                     </IconButton>
-                    <IconButton edge="end" aria-label="delete">
+                    <IconButton
+                      edge="end"
+                      aria-label="delete"
+                      onClick={() => handleDelete(i._id)}
+                    >
                       <Delete />
                     </IconButton>
                   </>
