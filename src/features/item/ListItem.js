@@ -3,6 +3,7 @@ import { getAllAsync, removeAsync } from "../../redux/item/itemAsyncThunk";
 import { itemSelector, select } from "../../redux/item/itemSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import SwipeableViews from "react-swipeable-views";
 
 import { Box, MobileStepper, Paper, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -65,6 +66,9 @@ export default function ListItem() {
       setActiveStep(activeStep - 1);
     }
   };
+  const handleStepChange = (step) => {
+    setActiveStep(step);
+  };
   return (
     <>
       {account.islogged && (
@@ -84,33 +88,51 @@ export default function ListItem() {
       <UpdateItem open={openUpdate} onClose={handleClose} />
       {itemFilter.length > 0 && (
         <Box sx={{ flexGrow: 1 }}>
-          <Box sx={{ height: 600, width: "100%", p: 2 }}>
-            {itemFilter[activeStep].image !== undefined &&
-              itemFilter[activeStep].image !== "" && (
-                <Box
-                  sx={{
-                    flexGrow: 1,
-                    textAlign: "center",
-                    marginBottom: "50px",
-                  }}
-                >
-                  <img src={itemFilter[activeStep].image} alt="" width="100%" />
-                </Box>
-              )}
-            <Typography
-              variant="h3"
-              gutterBottom
-              component="div"
-              sx={{ flexGrow: 1, textAlign: "center" }}
-            >
-              {itemFilter[activeStep].content}
-            </Typography>
-            <Box sx={{ flexGrow: 1, textAlign: "center", marginTop: "50px" }}>
-              <audio controls>
-                <source src={itemFilter[activeStep].audio} type="audio/mpeg" />
-              </audio>
-            </Box>
-          </Box>
+          <SwipeableViews
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            index={activeStep}
+            onChangeIndex={handleStepChange}
+            enableMouseEvents
+          >
+            {itemFilter.map((step, index) => (
+              <div key={step.label}>
+                {Math.abs(activeStep - index) <= 2 ? (
+                  <Box sx={{ height: 600, width: "100%", p: 2 }}>
+                    {step.image !== undefined && step.image !== "" && (
+                      <Box
+                        sx={{
+                          flexGrow: 1,
+                          textAlign: "center",
+                          marginBottom: "50px",
+                        }}
+                      >
+                        <img src={step.image} alt="" width="100%" />
+                      </Box>
+                    )}
+                    <Typography
+                      variant="h3"
+                      gutterBottom
+                      component="div"
+                      sx={{ flexGrow: 1, textAlign: "center" }}
+                    >
+                      {step.content}
+                    </Typography>
+                    <Box
+                      sx={{
+                        flexGrow: 1,
+                        textAlign: "center",
+                        marginTop: "50px",
+                      }}
+                    >
+                      <audio controls>
+                        <source src={step.audio} type="audio/mpeg" />
+                      </audio>
+                    </Box>
+                  </Box>
+                ) : null}
+              </div>
+            ))}
+          </SwipeableViews>
           <MobileStepper
             variant="text"
             steps={maxSteps}
