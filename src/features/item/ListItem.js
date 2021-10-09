@@ -106,7 +106,7 @@ export default function ListItem() {
                           marginBottom: "50px",
                         }}
                       >
-                        <img src={step.image} alt="" width="100%" />
+                        <img src={step.image} alt="" width="30%" />
                       </Box>
                     )}
                     <Typography
