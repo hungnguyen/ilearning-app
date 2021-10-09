@@ -20,6 +20,7 @@ import {
 } from "../../redux/item/itemAsyncThunk";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Box } from "@mui/system";
 
 export default function UpdateItem({ open, onClose, itemid }) {
   const dispatch = useDispatch();
@@ -69,49 +70,57 @@ export default function UpdateItem({ open, onClose, itemid }) {
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Item</DialogTitle>
         <DialogContent>
-          <TextField
-            autoFocus
-            name="content"
-            label="Text"
-            fullWidth
-            variant="standard"
-            value={item.content}
-            onChange={handleChange}
-          />
-          <TextField
-            autoFocus
-            name="image"
-            label="Image"
-            fullWidth
-            variant="standard"
-            value={item.image}
-            onChange={handleChange}
-          />
-          <TextField
-            autoFocus
-            name="audio"
-            label="Audio"
-            fullWidth
-            variant="standard"
-            value={item.audio}
-            onChange={handleChange}
-          />
-          <TextField
-            autoFocus
-            name="ordernumber"
-            label="Order number"
-            fullWidth
-            variant="standard"
-            value={item.ordernumber}
-            onChange={handleChange}
-            type="number"
-          />
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { marginTop: 1, marginBottom: 1 },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              autoFocus
+              name="content"
+              label="Text"
+              fullWidth
+              variant="outlined"
+              value={item.content}
+              onChange={handleChange}
+            />
+            <TextField
+              name="image"
+              label="Image"
+              fullWidth
+              variant="outlined"
+              value={item.image}
+              onChange={handleChange}
+            />
+            <TextField
+              name="audio"
+              label="Audio"
+              fullWidth
+              variant="outlined"
+              value={item.audio}
+              onChange={handleChange}
+            />
+            <TextField
+              name="ordernumber"
+              label="Order number"
+              fullWidth
+              variant="outlined"
+              value={item.ordernumber}
+              onChange={handleChange}
+              type="number"
+            />
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>Cancel</Button>
-          <Button onClick={handleSave}>Save</Button>
+          <Button onClick={handleSave} variant="contained">
+            Save
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

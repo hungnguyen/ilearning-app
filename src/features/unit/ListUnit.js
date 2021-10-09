@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom";
 import UpdateUnit from "./UpdateUnit";
 import { Delete, Edit } from "@mui/icons-material";
 import { accountSelector } from "../../redux/account/accountSlice";
+import { Box } from "@mui/system";
 
 export default function ListUnit() {
   const unit = useSelector(unitSelector);
@@ -49,7 +50,7 @@ export default function ListUnit() {
     }
   };
   return (
-    <>
+    <Box sx={{ marginTop: "15px" }}>
       {account.islogged && (
         <Button variant="outlined" onClick={handleOpen}>
           Add
@@ -90,6 +91,6 @@ export default function ListUnit() {
             </ListItem>
           ))}
       </List>
-    </>
+    </Box>
   );
 }

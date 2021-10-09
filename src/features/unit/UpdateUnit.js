@@ -20,6 +20,7 @@ import {
 } from "../../redux/unit/unitAsyncThunk";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Box } from "@mui/system";
 
 export default function UpdateUnit({ open, onClose }) {
   const dispatch = useDispatch();
@@ -73,21 +74,32 @@ export default function UpdateUnit({ open, onClose }) {
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Unit</DialogTitle>
         <DialogContent>
-          <TextField
-            autoFocus
-            name="name"
-            label="Name"
-            fullWidth
-            variant="standard"
-            value={item.name}
-            onChange={handleChange}
-          />
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { marginTop: 1, marginBottom: 1 },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              autoFocus
+              name="name"
+              label="Name"
+              fullWidth
+              variant="outlined"
+              value={item.name}
+              onChange={handleChange}
+            />
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>Cancel</Button>
-          <Button onClick={handleSave}>Save</Button>
+          <Button onClick={handleSave} variant="contained">
+            Save
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

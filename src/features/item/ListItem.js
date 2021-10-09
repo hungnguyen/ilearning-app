@@ -5,7 +5,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import SwipeableViews from "react-swipeable-views";
 
-import { Box, MobileStepper, Paper, Typography, Button } from "@mui/material";
+import {
+  Box,
+  MobileStepper,
+  Paper,
+  Typography,
+  Button,
+  ButtonGroup,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
@@ -70,19 +77,13 @@ export default function ListItem() {
     setActiveStep(step);
   };
   return (
-    <>
+    <Box sx={{ marginTop: "30px" }}>
       {account.islogged && (
-        <>
-          <Button variant="outlined" onClick={handleOpen}>
-            Add
-          </Button>
-          <Button variant="outlined" onClick={handleEdit}>
-            Edit
-          </Button>
-          <Button variant="outlined" onClick={handleDelete}>
-            Delete
-          </Button>
-        </>
+        <ButtonGroup variant="outlined" aria-label="outlined button group">
+          <Button onClick={handleOpen}>Add</Button>
+          <Button onClick={handleEdit}>Edit</Button>
+          <Button onClick={handleDelete}>Delete</Button>
+        </ButtonGroup>
       )}
 
       <UpdateItem open={openUpdate} onClose={handleClose} />
@@ -169,6 +170,6 @@ export default function ListItem() {
           />
         </Box>
       )}
-    </>
+    </Box>
   );
 }
