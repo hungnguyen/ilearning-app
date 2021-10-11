@@ -107,7 +107,7 @@ export default function ListItem() {
                           marginBottom: "50px",
                         }}
                       >
-                        <img src={step.image} alt="" width="30%" />
+                        <img src={step.image} alt="" width="20%" />
                       </Box>
                     )}
                     <Typography
@@ -125,7 +125,7 @@ export default function ListItem() {
                         marginTop: "50px",
                       }}
                     >
-                      <audio controls>
+                      <audio controls preload="auto">
                         <source src={step.audio} type="audio/mpeg" />
                       </audio>
                     </Box>
