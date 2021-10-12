@@ -137,7 +137,7 @@ export default function ListItem() {
           <MobileStepper
             variant="text"
             steps={maxSteps}
-            position="static"
+            position="bottom"
             activeStep={activeStep}
             nextButton={
               <Button
