@@ -89,7 +89,6 @@ export default function Master(props) {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
             onClick={() => {
               history.push("/");
             }}
@@ -106,10 +105,9 @@ export default function Master(props) {
           {!account.islogged ? (
             <IconButton
               size="large"
-              edge="start"
+              edge="end"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
               onClick={handleOpen}
             >
               <Login />
@@ -117,10 +115,9 @@ export default function Master(props) {
           ) : (
             <IconButton
               size="large"
-              edge="start"
+              edge="end"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
               onClick={() => dispatch(logout())}
             >
               <Logout />

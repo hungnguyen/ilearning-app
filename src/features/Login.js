@@ -86,14 +86,14 @@ export default function Login({ open, onClose }) {
                 ),
               }}
             />
+            <Box sx={{ textAlign: "right", marginTop: "15px" }}>
+              <Button onClick={handleCancel}>Cancel</Button>
+              <Button onClick={handleLogin} type="submit" variant="contained">
+                Login
+              </Button>
+            </Box>
           </Box>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCancel}>Cancel</Button>
-          <Button onClick={handleLogin} type="submit" variant="contained">
-            Login
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );
